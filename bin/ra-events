@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
-require './lib/ra_events'
+require './lib/environment'
+require "bundler/setup"
+# require "ra_events"
+
 
 RaEvents::CLI.new.call
 
