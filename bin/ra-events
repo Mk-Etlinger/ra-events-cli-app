@@ -3,3 +3,4 @@
 require './lib/ra_events'
 
 RaEvents::CLI.new.call
+
