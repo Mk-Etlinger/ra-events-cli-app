@@ -22,19 +22,25 @@ class Scraper
   end
 
   def self.scrape_events_page(url)
-
     ra_events_page = Nokogiri::HTML(open("https://www.residentadvisor.net/events.aspx"))
-
+    
     events = []
-    ra_events_page.css(".col4").each do |e|
-      e.css(".bbox").each do |e|
-        event_title = e.css('a').text
-        event_location = e.css('span').text
-        event_artists = e.css('div').text if !e.css('div').text.empty?
-        event_url = e.css('a').attribute('href').text
 
-        events << {title: event_title, location: event_location, artists: event_artists, url: event_url}
-      end
+    ra_events_page.css("#items").each do |event_listing|
+  
+          event_listing.css('li').each do |date| #until date.css('a').text == "Submit event"
+            # binding.pry
+              event_date = date.css('time').text
+              event_title = date.css('div h1 a').text.gsub("#{date.css('span a').text}", "")
+              event_location = date.css('span a').text unless date.css('span a').text.empty?
+              event_artists = date.css('div div').text unless date.css('div div').text.empty?
+              event_url = date.css('a').attr('href').text
+
+              events << {date: event_date, title: event_title, location: event_location, artists: event_artists, url: event_url}
+            # binding.pry
+          
+          end
+
     end
     events
     binding.pry
@@ -43,9 +49,18 @@ class Scraper
 end
 
 
-#This will grab the Date of all of the listed shows
+# This will grab the Date of all of the listed shows
 
 # ra_events_page.css("#event-listing .date").each do |e|
-#   puts "#{e.css('a').first.text}"
+#   puts "#{e.css('a').text}"
 # end
 
+
+# ra_events_page.css("#items").each do |event_listing|
+# 
+
+# Title: date.css('a').text || date.css('div h1').text # ex: "Selector Dub Narcotic, This Saxophone Kills Fascists at Babycastles"
+# Artists: date.css('div div').text
+# Url: date.css('a').attr('href').text
+
+# unless date.css('a').text == "Submit event"
