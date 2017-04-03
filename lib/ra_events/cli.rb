@@ -20,6 +20,12 @@ URL_BASE = "https://www.residentadvisor.net"
   def list_events(user_inputs_state)
     
     puts "Events this week:"
+    puts "******************"
+    puts "**************"
+    puts "**********"
+    puts "*******"
+    puts "****"
+    puts "**"
     
     Event.create_from_collection(Scraper.scrape_events_page(user_inputs_state))
     Event.all.each.with_index(1) do |event, i|
