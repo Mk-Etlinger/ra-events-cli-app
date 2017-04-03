@@ -1,3 +1,4 @@
+require_relative "../lib/ra_events/event.rb"
 require_relative "../lib/ra_events/scraper.rb"
 require_relative "../config.rb"
 RSpec.configure do |config|

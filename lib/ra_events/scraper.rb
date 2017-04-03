@@ -11,38 +11,33 @@ class Scraper
   end
   
   def self.scrape_links(index_url)
-    states_with_link = {}
+    state_event_page_url = {}
     ra_events_page = Nokogiri::HTML(open("https://www.residentadvisor.net/events.aspx"))
 
     ra_events_page.css("li.parent a").each do |e|
-      states_with_link[e.children.text] = e['href'] unless e.children.text == "Washington DC"
+      state_event_page_url[e.children.text] = e['href'] unless e.children.text == "Washington DC"
     end
 
-    states_with_link
+    state_event_page_url
   end
 
   def self.scrape_events_page(url)
 
     ra_events_page = Nokogiri::HTML(open("https://www.residentadvisor.net/events.aspx"))
 
+    events = []
     ra_events_page.css(".col4").each do |e|
-      puts "#{e.css(".date").first.text}
-      ***********************
-      ******************
-      ***********
-      *******
-      ***
-      *"
-      binding.pry
-      # e.css('.bbox').each do |e|
-      #   puts "Title: #{e.css('a').text}"
-      #   puts "Location: #{e.css('span').text}"
-      #   puts "Artists: #{e.css('div').text}" if !e.css('div').text.empty?
-      #   puts "Url: #{e.css('a').attribute('href').text}"
-      #   puts ""
-      # end
-    
+      e.css(".bbox").each do |e|
+        event_title = e.css('a').text
+        event_location = e.css('span').text
+        event_artists = e.css('div').text if !e.css('div').text.empty?
+        event_url = e.css('a').attribute('href').text
+
+        events << {title: event_title, location: event_location, artists: event_artists, url: event_url}
+      end
     end
+    events
+    binding.pry
   end
 
 end
@@ -53,3 +48,4 @@ end
 # ra_events_page.css("#event-listing .date").each do |e|
 #   puts "#{e.css('a').first.text}"
 # end
+
