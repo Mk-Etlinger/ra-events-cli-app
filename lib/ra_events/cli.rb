@@ -15,27 +15,25 @@ URL_BASE = "https://www.residentadvisor.net"
     puts "Please enter your state(ex: MI, NY, CA):"
     input = gets.strip
     url = URL_BASE + STATES_AND_LINKS[input]
+  end
 
+  def list_events(user_inputs_state)
     
     puts "Events this week:"
     
-    Event.create_from_collection(Scraper.scrape_events_page(url))
+    Event.create_from_collection(Scraper.scrape_events_page(user_inputs_state))
     Event.all.each.with_index(1) do |event, i|
       # binding.pry
-      puts "#{i}. #{event.title} 
-      Location: #{event.location} 
-      Artists: #{event.artists}
-      Date: #{event.date}
-      URL: #{event.url}
-      " if event.title != "" && event.location != ""
-
-    end
-
-  end
-
-  def list_events(user_input)
-    if user_input
-      
+      i -= 1
+      if event.title != "" && event.location != ""
+        puts "#{i}. #{event.title} "
+        puts "Location: #{event.location} " unless event.artists.nil?
+        puts "Artists: #{event.artists}" unless event.artists.nil?
+        puts "Date: #{event.date.gsub("T00:00", "")}"
+        puts "URL: #{event.url}
+        "
+        
+      end
     end
   end
 
