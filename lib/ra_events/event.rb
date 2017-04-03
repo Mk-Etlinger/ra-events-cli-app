@@ -1,6 +1,8 @@
+require 'pry'
+
 class Event
 
-  attr_accessor :title, :location, :artists, :url
+  attr_accessor :date, :title, :location, :artists, :url
 
   @@all = []
 
@@ -14,15 +16,8 @@ class Event
 
    def self.create_from_collection(events_array)
     events_array.each do |event_hash|
-      Student.new(event_hash)
+      Event.new(event_hash)
     end
-  end
-
-  def add_student_attributes(attributes_hash)
-    attributes_hash.each do |attr, value|
-      self.send("#{attr}=", value)
-    end
-    self
   end
 
   def self.all

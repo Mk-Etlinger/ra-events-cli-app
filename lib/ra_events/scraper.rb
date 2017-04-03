@@ -18,7 +18,8 @@ class Scraper
       state_event_page_url[e.children.text] = e['href'] unless e.children.text == "Washington DC"
     end
 
-    state_event_page_url
+    state_event_page_url 
+    binding.pry
   end
 
   def self.scrape_events_page(url)
@@ -42,8 +43,8 @@ class Scraper
           end
 
     end
-    events
-    binding.pry
+    events.compact
+    # binding.pry
   end
 
 end
@@ -64,3 +65,4 @@ end
 # Url: date.css('a').attr('href').text
 
 # unless date.css('a').text == "Submit event"
+
