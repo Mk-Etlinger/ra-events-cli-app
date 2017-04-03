@@ -7,7 +7,7 @@ URL_BASE = "https://www.residentadvisor.net"
 
   def call
     list_events(user_inputs_state)
-    goto_website
+    goto_event_url
     exit_program
   end
 
@@ -19,13 +19,7 @@ URL_BASE = "https://www.residentadvisor.net"
 
   def list_events(user_inputs_state)
     
-    puts "Events this week:"
-    puts "******************"
-    puts "**************"
-    puts "**********"
-    puts "*******"
-    puts "****"
-    puts "**"
+    display_events_this_week_text
     
     Event.create_from_collection(Scraper.scrape_events_page(user_inputs_state))
     Event.all.each.with_index(1) do |event, i|
@@ -37,13 +31,12 @@ URL_BASE = "https://www.residentadvisor.net"
         puts "Artists: #{event.artists}" unless event.artists.nil?
         puts "Date: #{event.date.gsub("T00:00", "")}"
         puts "URL: #{event.url}
-        "
-        
+        " 
       end
     end
   end
 
-  def goto_website
+  def goto_event_url
     input = nil
     while input != "exit"
       puts "Type goto ra to open events page in your browser or type exit:"
@@ -52,6 +45,16 @@ URL_BASE = "https://www.residentadvisor.net"
         puts "Opening residentadvisor.net..."
       end
     end
+  end
+
+  def display_events_this_week_text
+    puts "Events this week:"
+    puts "****************"
+    puts "*************"
+    puts "**********"
+    puts "*******"
+    puts "****"
+    puts "**"
   end
 
   def exit_program
