@@ -23,7 +23,7 @@ class Scraper
   end
 
   def self.scrape_events_page(url)
-    ra_events_page = Nokogiri::HTML(open("https://www.residentadvisor.net/events.aspx"))
+    ra_events_page = Nokogiri::HTML(open("url"))
     
     events = []
 
