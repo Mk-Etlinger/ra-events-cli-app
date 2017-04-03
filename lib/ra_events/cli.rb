@@ -23,7 +23,6 @@ URL_BASE = "https://www.residentadvisor.net"
     
     Event.create_from_collection(Scraper.scrape_events_page(user_inputs_state))
     Event.all.each.with_index(1) do |event, i|
-      # binding.pry
       i -= 1
       if event.title != "" && event.location != ""
         puts "#{i}. #{event.title} "
@@ -39,10 +38,13 @@ URL_BASE = "https://www.residentadvisor.net"
   def goto_event_url
     input = nil
     while input != "exit"
-      puts "Type goto ra to open events page in your browser or type exit:"
+      puts "Type goto #(ex: goto 18) to open event page in your browser or type exit:"
       input = gets.strip
-      if input == "goto ra"
+      if input.include?("goto")
         puts "Opening residentadvisor.net..."
+        event = Event.all[input.sub("goto ", "").to_i]
+        URL_BASE + event.url
+        `open #{URL_BASE + event.url}`
       end
     end
   end
