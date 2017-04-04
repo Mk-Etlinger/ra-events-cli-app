@@ -28,18 +28,24 @@ class Scraper
     events << {no_events_listed: true} if ra_events_page.css('.pr8').first.text.include?("no events")
     ra_events_page.css("#items").each do |event_listing|
       
-      event_listing.css('li').each do |date|
-        event_date = date.css('time').text
-        event_title = date.css('div h1 a').text.gsub("#{date.css('span a').text}", "")
-        event_location = date.css('span a[1]').text + " " + date.css('a[2]').text unless date.css('span a').text.empty?
-        event_artists = date.css('div div').text unless date.css('div div').text.empty?
-        event_url = date.css('a').attr('href').text
+      event_listing.css('li').each do |event|
+        event_date = event.css('time').text
+        event_title = event.css('div h1 a').text.gsub("#{event.css('span a').text}", "")
+        event_location = event.css('span a[1]').text + " " + event.css('a[2]').text unless event.css('span a').text.empty?
+        event_artists = event.css('div div').text unless event.css('div div').text.empty?
+        event_url = event.css('a').attr('href').text
 
-        events << {date: event_date, title: event_title, location: event_location, artists: event_artists, url: event_url}          
+        if event_title != "" && event_location != ""  
+          events << {date: event_date, title: event_title, location: event_location, artists: event_artists, url: event_url}         
+        end
       end
-
     end
-    events.compact
+
+    events
   end
+
+  # def is_real_event?(event_title, event_location)
+  #   event_title != "" && event_location != ""
+  # end
 
 end

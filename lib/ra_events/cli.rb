@@ -33,17 +33,18 @@ URL_BASE = "https://www.residentadvisor.net"
     
     Event.create_from_collection(Scraper.scrape_events_page(user_inputs_state))
     Event.all.each.with_index(1) do |event, i|
-      i -= 1
+      
       if event.no_events_listed == true
         puts "There are currently no events listed for this date range in this region."
         puts
-      elsif event.title != "" && event.location != ""
+      else
         puts "#{i}. #{event.title} "
         puts "Location: #{event.location} " unless event.artists.nil?
         puts "Artists: #{event.artists}" unless event.artists.nil?
         puts "Date: #{event.date.gsub("T00:00", "")}" #unless event.date.nil?
         puts 
       end
+
     end
   end
 
