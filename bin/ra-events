@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/ra_events'
+require_relative '../lib/ra_events' 
 require "bundler/setup"
 # require "ra_events"
 

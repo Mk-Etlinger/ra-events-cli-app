@@ -28,4 +28,13 @@
       at Analog Bkny
       Bill Patrick, Taimur & Fahad
 
-+ Type "goto ra" to launch website.
++ Type "goto ra" to launch website or "exit"
+
+What is an event?
+
+  An event has:
+    -Title
+    -Location
+    -URL
+    -Ticket price
+
