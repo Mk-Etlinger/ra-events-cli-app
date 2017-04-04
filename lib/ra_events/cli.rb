@@ -41,10 +41,9 @@ URL_BASE = "https://www.residentadvisor.net"
         puts "#{i}. #{event.title} "
         puts "Location: #{event.location} " unless event.artists.nil?
         puts "Artists: #{event.artists}" unless event.artists.nil?
-        puts "Date: #{event.date.gsub("T00:00", "")}" #unless event.date.nil?
+        puts "Date: #{event.date.gsub("T00:00", "")}" 
         puts 
       end
-
     end
   end
 
@@ -53,10 +52,10 @@ URL_BASE = "https://www.residentadvisor.net"
     while input != "exit"
       puts "Type the event # you'd like to view in your browser or type exit:"
       input = gets.strip
+      
       if input.to_i > 0 && input.to_i < Event.all.count
         puts "Opening residentadvisor.net..."
-        event = Event.all[input.sub("goto ", "").to_i]
-        URL_BASE + event.url
+        event = Event.all[input.to_i - 1]
         `open #{URL_BASE + event.url}`
       end
     end
