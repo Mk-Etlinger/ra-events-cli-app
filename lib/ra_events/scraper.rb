@@ -19,7 +19,6 @@ class Scraper
     end
 
     state_event_page_url 
-    binding.pry
   end
 
   def self.scrape_events_page(url)
@@ -33,7 +32,8 @@ class Scraper
             # binding.pry
               event_date = date.css('time').text
               event_title = date.css('div h1 a').text.gsub("#{date.css('span a').text}", "")
-              event_location = date.css('span a').text unless date.css('span a').text.empty?
+              event_location = date.css('span a[1]').text + " " + date.css('a[2]').text unless date.css('span a').text.empty?
+              # binding.pry
               event_artists = date.css('div div').text unless date.css('div div').text.empty?
               event_url = date.css('a').attr('href').text
 
