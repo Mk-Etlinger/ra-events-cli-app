@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Mike Etlinger"]
   spec.email         = ["mk.etlinger@gmail.com"]
 
-  spec.summary       = %q{ra-events lists events by state right to your terminal}
+  spec.summary       = %q{ra-events lists Resident Advisor events by state from the comfort of your CLI}
   spec.description   = %q{Type in your state, get a list of events by week, and open an event in your browser for more details.}
   spec.homepage      = "https://github.com/Mk-Etlinger/ra-events-cli-app"
   spec.license       = "MIT"
