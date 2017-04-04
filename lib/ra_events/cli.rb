@@ -28,10 +28,10 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def list_events(user_inputs_state)
-    
     display_events_this_week_text
     
-    Event.create_from_collection(Scraper.scrape_events_page(user_inputs_state))
+    events_by_week = Scraper.scrape_events_page(user_inputs_state)
+    Event.create_from_collection(events_by_week)
     Event.all.each.with_index(1) do |event, i|
       
       if event.no_events_listed == true
@@ -53,7 +53,7 @@ URL_BASE = "https://www.residentadvisor.net"
       puts "Type the event # you'd like to view in your browser or type exit:"
       input = gets.strip
       
-      if input.to_i > 0 && input.to_i < Event.all.count
+      if input.to_i > 0 && input.to_i <= Event.all.count
         puts "Opening residentadvisor.net..."
         event = Event.all[input.to_i - 1]
         `open #{URL_BASE + event.url}`

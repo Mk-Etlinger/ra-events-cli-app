@@ -25,10 +25,10 @@ class Scraper
     ra_events_page = Nokogiri::HTML(open(url))
     
     events = []
-    events << {no_events_listed: true} if ra_events_page.css('.pr8').first.text.include?("no events")
-    ra_events_page.css("#items").each do |event_listing|
-      
-      event_listing.css('li').each do |event|
+    events << {no_events_listed: true} if self.is_real_event?(ra_events_page)
+    
+    ra_events_page.css("#items").each do |event_listings|
+      event_listings.css('li').each do |event|
         event_date = event.css('time').text
         event_title = event.css('div h1 a').text.gsub("#{event.css('span a').text}", "")
         event_location = event.css('span a[1]').text + " " + event.css('a[2]').text unless event.css('span a').text.empty?
@@ -44,8 +44,8 @@ class Scraper
     events
   end
 
-  # def is_real_event?(event_title, event_location)
-  #   event_title != "" && event_location != ""
-  # end
+  def self.is_real_event?(ra_events_page)
+    ra_events_page.css('.pr8').first.text.include?("no events")
+  end
 
 end
