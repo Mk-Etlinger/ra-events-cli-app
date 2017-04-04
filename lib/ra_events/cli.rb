@@ -13,13 +13,18 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def welcome
-    puts "Welcome to ra_events! A gem that lists electronic music events"
+    puts "Welcome to ra_events! A gem that lists electronic music events."
   end
 
   def user_inputs_state
     puts "Please enter your state(ex: MI, NY, CA):"
-    input = gets.strip
-    url = URL_BASE + STATES_AND_LINKS[input]
+    input = gets.strip.upcase
+    if STATES_AND_LINKS.key?(input)
+      url = URL_BASE + STATES_AND_LINKS[input]
+    else
+      puts "Invalid"
+      user_inputs_state
+    end
   end
 
   def list_events(user_inputs_state)
@@ -42,9 +47,9 @@ URL_BASE = "https://www.residentadvisor.net"
   def goto_event_url
     input = nil
     while input != "exit"
-      puts "Type goto #(ex: goto 18) to view event page in your browser or type exit:"
+      puts "Type ##(ex: 12) to view event page in your browser or type exit:"
       input = gets.strip
-      if input.include?("goto")
+      if input.to_i > 0 && input.to_i < Event.all.count
         puts "Opening residentadvisor.net..."
         event = Event.all[input.sub("goto ", "").to_i]
         URL_BASE + event.url

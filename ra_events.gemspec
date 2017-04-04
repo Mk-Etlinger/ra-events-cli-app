@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Mike Etlinger"]
   spec.email         = ["mk.etlinger@gmail.com"]
 
-  spec.summary       = %q{ra-events lists Resident Advisor events by state from the comfort of your CLI}
-  spec.description   = %q{Type in your state, get a list of events by week, and open an event in your browser for more details.}
+  spec.summary       = %q{ra_events lists Resident Advisor events by state from the comfort of your CLI}
+  spec.description   = %q{Type `ra-events` after running `gem install ra_events`. Then type in your state, get a list of electronic music events by week, and open an event in your browser for more details.}
   spec.homepage      = "https://github.com/Mk-Etlinger/ra-events-cli-app"
   spec.license       = "MIT"
 
@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = "bin"
+  spec.bindir        = "ra-events"
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
