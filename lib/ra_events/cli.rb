@@ -47,7 +47,7 @@ URL_BASE = "https://www.residentadvisor.net"
   def goto_event_url
     input = nil
     while input != "exit"
-      puts "Type ##(ex: 12) to view event page in your browser or type exit:"
+      puts "Type 1-#{Event.all.count} to view event page in your browser or type exit:"
       input = gets.strip
       if input.to_i > 0 && input.to_i < Event.all.count
         puts "Opening residentadvisor.net..."
