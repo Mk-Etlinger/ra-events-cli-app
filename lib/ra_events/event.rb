@@ -2,7 +2,7 @@ require 'pry'
 
 class Event
 
-  attr_accessor :date, :title, :location, :artists, :url
+  attr_accessor :date, :title, :location, :artists, :url, :no_events_listed
 
   @@all = []
 

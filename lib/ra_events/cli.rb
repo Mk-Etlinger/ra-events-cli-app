@@ -34,11 +34,14 @@ URL_BASE = "https://www.residentadvisor.net"
     Event.create_from_collection(Scraper.scrape_events_page(user_inputs_state))
     Event.all.each.with_index(1) do |event, i|
       i -= 1
-      if event.title != "" && event.location != ""
+      if event.no_events_listed == true
+        puts "There are currently no events listed for this date range in this region."
+        puts
+      elsif event.title != "" && event.location != ""
         puts "#{i}. #{event.title} "
         puts "Location: #{event.location} " unless event.artists.nil?
         puts "Artists: #{event.artists}" unless event.artists.nil?
-        puts "Date: #{event.date.gsub("T00:00", "")}"
+        puts "Date: #{event.date.gsub("T00:00", "")}" #unless event.date.nil?
         puts 
       end
     end
@@ -47,7 +50,7 @@ URL_BASE = "https://www.residentadvisor.net"
   def goto_event_url
     input = nil
     while input != "exit"
-      puts "Type 1-#{Event.all.count} to view event page in your browser or type exit:"
+      puts "Type the event # you'd like to view in your browser or type exit:"
       input = gets.strip
       if input.to_i > 0 && input.to_i < Event.all.count
         puts "Opening residentadvisor.net..."
