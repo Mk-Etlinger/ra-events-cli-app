@@ -4,4 +4,4 @@ source 'https://rubygems.org'
 gemspec
 
 # Do I need this pointing to GH? 
-gem 'ra-events', :git => "git://github.com/Mk-Etlinger/ra-events-cli-app.git"
+# gem 'ra_events', :git => "git://github.com/Mk-Etlinger/ra-events-cli-app.git"

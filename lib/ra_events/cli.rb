@@ -6,9 +6,14 @@ STATES_AND_LINKS = {"AL"=>"/events.aspx?ai=108", "AK"=>"/events.aspx?ai=109", "A
 URL_BASE = "https://www.residentadvisor.net"
 
   def call
+    welcome
     list_events(user_inputs_state)
     goto_event_url
     exit_program
+  end
+
+  def welcome
+    puts "Welcome to ra_events! A gem that lists electronic music events"
   end
 
   def user_inputs_state
@@ -59,7 +64,7 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def exit_program
-    puts "Goodbye!"
+    puts "Bye, See you on the dance floor!"
   end
 
 end

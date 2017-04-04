@@ -27,8 +27,8 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = "ra-events"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.bindir        = "bin"
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.14"
@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", ">= 0.9.0"
   spec.add_development_dependency "rspec", ">= 3.2.0"
   
-  spec.add_dependency "nokogiri", ">= 1.7.0"
+  spec.add_runtime_dependency "nokogiri", ">= 1.7.0"
 
 end
 
