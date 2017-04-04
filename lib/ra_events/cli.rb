@@ -29,8 +29,7 @@ URL_BASE = "https://www.residentadvisor.net"
         puts "Location: #{event.location} " unless event.artists.nil?
         puts "Artists: #{event.artists}" unless event.artists.nil?
         puts "Date: #{event.date.gsub("T00:00", "")}"
-        puts "URL: #{event.url}
-        " 
+        puts 
       end
     end
   end
@@ -38,7 +37,7 @@ URL_BASE = "https://www.residentadvisor.net"
   def goto_event_url
     input = nil
     while input != "exit"
-      puts "Type goto #(ex: goto 18) to open event page in your browser or type exit:"
+      puts "Type goto #(ex: goto 18) to view event page in your browser or type exit:"
       input = gets.strip
       if input.include?("goto")
         puts "Opening residentadvisor.net..."
