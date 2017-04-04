@@ -7,6 +7,7 @@ URL_BASE = "https://www.residentadvisor.net"
 
   def call
     welcome
+    clear_events
     list_events(user_inputs_state)
     goto_event_url
     exit_program
@@ -37,6 +38,7 @@ URL_BASE = "https://www.residentadvisor.net"
       if event.no_events_listed == true
         puts "There are currently no events listed for this date range in this region."
         puts
+        call
       else
         puts "#{i}. #{event.title} "
         puts "Location: #{event.location} " unless event.artists.nil?
@@ -73,6 +75,10 @@ URL_BASE = "https://www.residentadvisor.net"
 
   def exit_program
     puts "Bye, See you on the dance floor!"
+  end
+
+  def clear_events
+    Event.clear
   end
 
 end
