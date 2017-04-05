@@ -49,7 +49,7 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def goto_event_url
-    puts "Type the event # you'd like to view in your browser or type exit:"
+    puts "Type the event # you'd like to view in your browser, 'menu' or 'exit':"
     input = gets.strip.downcase
       
       if input.to_i > 0 && input.to_i <= Event.all.count
@@ -60,10 +60,16 @@ URL_BASE = "https://www.residentadvisor.net"
         goto_event_url
       elsif input == "exit"
         exit_program
+      elsif input == "menu"
+        main_menu
       else
         puts "Invalid"
         goto_event_url
       end
+  end
+
+  def main_menu
+    call
   end
 
   def display_events_this_week_text
