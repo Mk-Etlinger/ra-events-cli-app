@@ -61,6 +61,7 @@ URL_BASE = "https://www.residentadvisor.net"
       elsif input == "exit"
         exit_program
       elsif input == "menu"
+        clear_events
         main_menu
       else
         puts "Invalid"
