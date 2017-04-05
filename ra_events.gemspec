@@ -11,7 +11,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["mk.etlinger@gmail.com"]
 
   spec.summary       = %q{ra_events lists Resident Advisor events by state from the comfort of your CLI}
-  spec.description   = %q{Type `ra-events` after running `gem install ra_events`. Then type in your state, get a list of electronic music events by week, and open an event in your browser for more details.}
+  spec.description   = %q{*Disclaimer: ra_events uses the 'open' command to open an event URL in your browser. This will not work on Windows machines, however, the URL will be printed for easy copy/paste*
+    Type `ra-events` after running `gem install ra_events`. Then type in your state, get a list of electronic music events by week, and open an event in your browser for more details.}
   spec.homepage      = "https://github.com/Mk-Etlinger/ra-events-cli-app"
   spec.license       = "MIT"
 

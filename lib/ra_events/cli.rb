@@ -7,10 +7,8 @@ URL_BASE = "https://www.residentadvisor.net"
 
   def call
     welcome
-    clear_events
     list_events(user_inputs_state)
     goto_event_url
-    exit_program
   end
 
   def welcome
@@ -38,6 +36,7 @@ URL_BASE = "https://www.residentadvisor.net"
       if event.no_events_listed == true
         puts "There are currently no events listed for this date range in this region."
         puts
+        clear_events
         call
       else
         puts "#{i}. #{event.title} "
@@ -50,17 +49,21 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def goto_event_url
-    input = nil
-    while input != "exit"
-      puts "Type the event # you'd like to view in your browser or type exit:"
-      input = gets.strip
+    puts "Type the event # you'd like to view in your browser or type exit:"
+    input = gets.strip.downcase
       
       if input.to_i > 0 && input.to_i <= Event.all.count
         puts "Opening residentadvisor.net..."
         event = Event.all[input.to_i - 1]
+        puts "#{URL_BASE + event.url}"
         `open #{URL_BASE + event.url}`
+        goto_event_url
+      elsif input == "exit"
+        exit_program
+      else
+        puts "Invalid"
+        goto_event_url
       end
-    end
   end
 
   def display_events_this_week_text
@@ -74,7 +77,9 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def exit_program
-    puts "Bye, See you on the dance floor!"
+    clear_events
+    puts "Bye, see you on the dance floor!"
+    exit
   end
 
   def clear_events
