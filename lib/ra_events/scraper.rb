@@ -3,12 +3,6 @@ require 'open-uri'
 require 'nokogiri'
 
 class Scraper
-
-  attr_accessor 
-
-  def initialize
-
-  end
   
   def self.scrape_links(index_url)
     state_event_page_url = {}
@@ -25,7 +19,7 @@ class Scraper
     ra_events_page = Nokogiri::HTML(open(url))
     
     events = []
-    events << {no_events_listed: true} if self.is_real_event?(ra_events_page)
+    events << {no_events_listed: true} if self.no_events_listed(ra_events_page)
     
     ra_events_page.css("#items").each do |event_listings|
       event_listings.css('li').each do |event|
@@ -44,7 +38,7 @@ class Scraper
     events
   end
 
-  def self.is_real_event?(ra_events_page)
+  def self.no_events_listed(ra_events_page)
     ra_events_page.css('.pr8').first.text.include?("no events")
   end
 
