@@ -6,12 +6,11 @@ class Scraper
   
   def self.scrape_links(index_url)
     state_event_page_url = {}
-    ra_events_page = Nokogiri::HTML(open("https://www.residentadvisor.net/events.aspx"))
+    ra_events_page = Nokogiri::HTML(open(index_url))
 
     ra_events_page.css("li.parent a").each do |e|
       state_event_page_url[e.children.text] = e['href'] unless e.children.text == "Washington DC"
     end
-
     state_event_page_url 
   end
 
