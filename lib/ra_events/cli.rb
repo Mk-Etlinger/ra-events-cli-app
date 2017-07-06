@@ -32,16 +32,11 @@ URL_BASE = "https://www.residentadvisor.net"
 
     Event.all.each.with_index(1) do |event, i|      
       if event.no_events_listed == true
-        puts "There are currently no events listed for this date range in this region."
-        puts
+        no_events_listed_message
         clear_events
         call
       else
-        puts "#{i}. #{event.title} "
-        puts "Location: #{event.location} " unless event.artists.nil?
-        puts "Artists: #{event.artists}" unless event.artists.nil?
-        puts "Date: #{event.date.gsub("T00:00", "")}" 
-        puts 
+        display_and_format_event(event, i)
       end
     end
   end
@@ -100,6 +95,20 @@ URL_BASE = "https://www.residentadvisor.net"
     puts "Please enter your state(ex: MI, NY, CA):"
   end
 
+  def no_events_listed_message
+    puts "There are currently no events listed for this month in this region."
+    puts
+  end
+
+  def display_and_format_event(event, i)
+    puts "#{i}. #{event.title} "
+    puts "Location: #{event.location} " unless event.artists.nil?
+    puts "Artists: #{event.artists}" unless event.artists.nil?
+    puts "Date: #{event.date.gsub("T00:00", "")}" 
+    puts 
+  end
+  
+  
 end
 
 
