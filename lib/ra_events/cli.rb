@@ -7,7 +7,7 @@ URL_BASE = "https://www.residentadvisor.net"
 
   def call
     welcome
-    list_events(user_inputs_state)
+    list_events
     goto_event_url
   end
 
@@ -16,7 +16,7 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def user_inputs_state
-    puts "Please enter your state(ex: MI, NY, CA):"
+    prompt_for_state
     input = gets.strip.upcase
     if STATES_AND_LINKS.key?(input)
       url = URL_BASE + STATES_AND_LINKS[input]
@@ -26,7 +26,7 @@ URL_BASE = "https://www.residentadvisor.net"
     end
   end
 
-  def list_events(user_inputs_state)
+  def list_events
     display_events_this_week_text
     scrape_events
 
@@ -95,7 +95,10 @@ URL_BASE = "https://www.residentadvisor.net"
     events_by_month = Scraper.scrape_events_page(user_inputs_state)
     Event.create_from_collection(events_by_month)
   end
-  
+
+  def prompt_for_state
+    puts "Please enter your state(ex: MI, NY, CA):"
+  end
 
 end
 
