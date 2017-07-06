@@ -15,17 +15,6 @@ URL_BASE = "https://www.residentadvisor.net"
     puts "Welcome to ra_events! A gem that lists electronic music events."
   end
 
-  def user_inputs_state
-    prompt_for_state
-    input = gets.strip.upcase
-    if STATES_AND_LINKS.key?(input)
-      url = URL_BASE + STATES_AND_LINKS[input]
-    else
-      puts "Invalid"
-      user_inputs_state
-    end
-  end
-
   def list_events
     display_events_this_week_text
     scrape_events
@@ -61,6 +50,17 @@ URL_BASE = "https://www.residentadvisor.net"
       end
   end
 
+  def user_inputs_state
+    prompt_for_state
+    input = gets.strip.upcase
+    if STATES_AND_LINKS.key?(input)
+      url = URL_BASE + STATES_AND_LINKS[input]
+    else
+      puts "Invalid"
+      user_inputs_state
+    end
+  end
+
   def main_menu
     call
   end
@@ -73,16 +73,6 @@ URL_BASE = "https://www.residentadvisor.net"
     puts "*******"
     puts "****"
     puts "**"
-  end
-
-  def exit_program
-    clear_events
-    puts "Bye, see you on the dance floor!"
-    exit
-  end
-
-  def clear_events
-    Event.clear
   end
 
   def scrape_events
@@ -117,10 +107,19 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def open_url_in_browser(event)
-  `open #{URL_BASE + event.url}`
+    `open #{URL_BASE + event.url}`
   end
   
-  
+  def exit_program
+    clear_events
+    puts "Bye, see you on the dance floor!"
+    exit
+  end
+
+  def clear_events
+    Event.clear
+  end
+
 end
 
 
