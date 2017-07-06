@@ -28,11 +28,9 @@ URL_BASE = "https://www.residentadvisor.net"
 
   def list_events(user_inputs_state)
     display_events_this_week_text
-    
-    events_by_week = Scraper.scrape_events_page(user_inputs_state)
-    Event.create_from_collection(events_by_week)
-    Event.all.each.with_index(1) do |event, i|
-      
+    scrape_events
+
+    Event.all.each.with_index(1) do |event, i|      
       if event.no_events_listed == true
         puts "There are currently no events listed for this date range in this region."
         puts
@@ -92,6 +90,12 @@ URL_BASE = "https://www.residentadvisor.net"
   def clear_events
     Event.clear
   end
+
+  def scrape_events
+    events_by_month = Scraper.scrape_events_page(user_inputs_state)
+    Event.create_from_collection(events_by_month)
+  end
+  
 
 end
 
