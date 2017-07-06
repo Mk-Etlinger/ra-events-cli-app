@@ -42,14 +42,13 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def goto_event_url
-    puts "Type the event # you'd like to view in your browser, 'menu' or 'exit':"
+    prompt_for_event_menu_or_exit
     input = gets.strip.downcase
       
       if input.to_i > 0 && input.to_i <= Event.all.count
-        puts "Opening residentadvisor.net..."
         event = Event.all[input.to_i - 1]
-        puts "#{URL_BASE + event.url}"
-        `open #{URL_BASE + event.url}`
+        print_url(event)
+        open_url_in_browser(event)
         goto_event_url
       elsif input == "exit"
         exit_program
@@ -106,6 +105,19 @@ URL_BASE = "https://www.residentadvisor.net"
     puts "Artists: #{event.artists}" unless event.artists.nil?
     puts "Date: #{event.date.gsub("T00:00", "")}" 
     puts 
+  end
+  
+  def prompt_for_event_menu_or_exit
+    puts "Type the event # you'd like to view in your browser, 'menu' or 'exit':"
+  end  
+  
+  def print_url(event)
+    puts "Opening residentadvisor.net..."
+    puts "#{URL_BASE + event.url}"
+  end
+
+  def open_url_in_browser(event)
+  `open #{URL_BASE + event.url}`
   end
   
   
