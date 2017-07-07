@@ -27,4 +27,11 @@ class Event
   def self.clear
     self.all.clear
   end
+
+  # def self.includes_artist(artist)
+  #   Event.all.select do |event|
+  #     event.artists.include?(artist)
+  #   end    
+  # end
+  
 end

@@ -2,7 +2,7 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'ra_events/version'
-require 'pry'
+
 
 Gem::Specification.new do |spec|
   spec.name          = "ra_events"
@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "pry", ">= 0.9.0"
+  spec.add_development_dependency 'pry', '~> 0.9.12'
   spec.add_development_dependency "rspec", ">= 3.2.0"
   spec.add_development_dependency "coderay", "~> 1.1.1"
   

@@ -17,8 +17,7 @@ class Scraper
   def self.scrape_events_page(url)
     ra_events_page = Nokogiri::HTML(open(url))
     
-    events = []
-    events << {no_events_listed: true} if self.no_events_listed(ra_events_page)
+    Event.new({no_events_listed: true}) if self.no_events_listed(ra_events_page)
     
     ra_events_page.css("#items").each do |event_listings|
       event_listings.css('li').each do |event|
@@ -29,12 +28,10 @@ class Scraper
         event_url = event.css('a').attr('href').text
 
         if event_title != "" && event_location != ""  
-          events << {date: event_date, title: event_title, location: event_location, artists: event_artists, url: event_url}         
+          Event.new({date: event_date, title: event_title, location: event_location, artists: event_artists, url: event_url} )        
         end
       end
     end
-
-    events
   end
 
   def self.no_events_listed(ra_events_page)

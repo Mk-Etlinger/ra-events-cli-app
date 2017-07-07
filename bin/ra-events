@@ -3,6 +3,5 @@
 require_relative '../lib/ra_events' 
 require "bundler/setup"
 
-
 RaEvents::CLI.new.call
 

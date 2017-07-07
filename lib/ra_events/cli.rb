@@ -16,9 +16,9 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def list_events
-    display_events_this_week_text
     scrape_events
-
+    display_events_this_week_text
+    
     Event.all.each.with_index(1) do |event, i|      
       if event.no_events_listed == true
         no_events_listed_message
@@ -67,17 +67,22 @@ URL_BASE = "https://www.residentadvisor.net"
 
   def display_events_this_week_text
     puts "Events this week:"
-    puts "****************"
-    puts "*************"
-    puts "**********"
-    puts "*******"
-    puts "****"
-    puts "**"
+    puts "****************" 
+    sleep 0.1
+    puts "*************" 
+    sleep 0.1
+    puts "**********" 
+    sleep 0.1
+    puts "*******" 
+    sleep 0.1
+    puts "****" 
+    sleep 0.1
+    puts "**"  
+    sleep 0.1 
   end
 
   def scrape_events
-    events_by_month = Scraper.scrape_events_page(get_event_url)
-    Event.create_from_collection(events_by_month)
+    Scraper.scrape_events_page(get_event_url)
   end
 
   def prompt_for_state
