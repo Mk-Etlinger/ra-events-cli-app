@@ -90,7 +90,7 @@ URL_BASE = "https://www.residentadvisor.net"
   end
 
   def no_events_listed_message
-    puts "There are currently no events listed for this month in this region."
+    puts "There are currently no events listed for this week in this region."
     puts
   end
 
