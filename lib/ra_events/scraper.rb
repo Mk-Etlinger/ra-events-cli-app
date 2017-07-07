@@ -28,7 +28,7 @@ class Scraper
         event_url = event.css('a').attr('href').text
 
         if event_title != "" && event_location != ""  
-          Event.new({date: event_date, title: event_title, location: event_location, artists: event_artists, url: event_url} )        
+          Event.new({date: event_date, title: event_title, location: event_location, artists: event_artists, url: event_url})        
         end
       end
     end
