@@ -1,28 +1,14 @@
 # RaEvents
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ra_events`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+*Disclaimer: ra_events uses the 'open' command to open an event URL in your browser. This will not work on Windows machines, however, the URL will be printed for easy copy/paste* Type `ra-events` after running `gem install ra_events`. Then type in your state, get a list of electronic music events by week, and open an event in your browser for more details.
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'ra_events'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install ra_events
 
 ## Usage
-
-TODO: Write usage instructions here
+    To run the program from terminal, type:
+     $ ra-events
 
 ## Development
 
